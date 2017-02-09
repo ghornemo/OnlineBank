@@ -1,10 +1,66 @@
 <!DOCTYPE html>
+<html>
+
+<head>
+  <title>OnlineBank</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="js/index.js"></script>
-  
+</head>
+
+<body>
 <div class="container">
-    <center>
+  
+  <div class="row"><!--Row1-->
+    <div class="col-md-6">
+      <h2 id="logo">OnlineBank</h2>
+    </div>
+    <div class="col-md-6">
+      <ul>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+  </div><!--End Row1-->
+
+  <div class="row"><!--Row2-->
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+      <form  name="login" action="login" onsubmit="return validateForm()" method="post">
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-default" value="login">Login</button>
+        <button type="button" class="btn btn-default" onclick="window.location.href='register.html'">Register</button>
+      </form>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+  </div><!--End Row2-->
+
+  <div class="row"><!--Row3-->
+    <div class="col-md-12" id="description">
+      <p>OnlineBank provides you banking services at the comfort of your home. OnlineBank is offered by Software Engineers, Kene and Gemal and it affiliates, you agree to the terms and conditions of the Financial Services Terms, Cardholder and Electronic Financial Services Terms and Conditions and/or; the Business Access Services Schedule, and/or; the Terms and Agreement and Disclosure for mutual fund accounts held with us.</p>
+    </div>
+  </div><!--End Row3-->
+
+</div>
+</body>
+</html>
+  
+  
+
+  <!--  <center>
          <div class="jumbotron text-center">
   <h1>Title</h1>
   <p>Formal description of the bank</p>
@@ -33,5 +89,4 @@
         <p>Very bank, wow</p>
         <p>Such descriptions</p>
       </div>
-    </center>
-</div>
+    </center>-->
