@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="index.js"></script>
+  
+<div class="container">
+    <center>
+         <div class="jumbotron text-center">
+  <h1>Title</h1>
+  <p>Formal description of the bank</p>
+</div>
+  <div class="row" style="padding:200px; height:50%; float: middle">
+          <div class="col-sm-4">
+      <h3>Column 2</h3>
+      <p>random text</p>
+      <p>more random text</p>
+    </div>
+    <div class="col-sm-8">
+        <form name="login" onsubmit="return validateForm()" method="post">
+            Email:<br>
+            <input type="text" name="email">
+            <br>
+            Password:<br>
+            <input type="password" name="password">
+            <br><br>
+            <input type="submit" value="Login">
+            <button type="button" class="btn-default" onclick="window.location.href='register.html'">Register</button>
+        </form>
+    </div>
+  </div>
+      <div class="row" style="top:80%; height: 20%;">
+        <h3>The bank</h3>
+        <p>Very bank, wow</p>
+        <p>Such descriptions</p>
+      </div>
+    </center>
+</div>
