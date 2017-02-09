@@ -6,6 +6,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,13 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String status = "";
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        if(login(email, password))
+            status = "Successful login";
+        else
+            status = "Invalid login details";
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -37,10 +45,35 @@ public class LoginServlet extends HttpServlet {
             out.println("<title>Servlet LoginServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Login response: " + status + "</h1>");
+            out.println("<h1>for email: " + email + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
+    }
+    
+    public boolean login(String email, String pass) {
+      Connection conn = SQL.database();
+      try {
+     //Execute a query
+      System.out.println("Creating statement...");
+      Statement stmt = conn.createStatement();
+      String sql;
+      sql = "select password from clients where email="+email+";";
+      ResultSet rs = stmt.executeQuery(sql);
+      String authentication = "";
+      if(rs.next()) {
+          authentication = rs.getString("password");
+      }
+      conn.close();
+      if(authentication.equals(pass))
+        return true;
+      return false;
+      } catch (Exception e) {
+         e.printStackTrace();
+         System.err.println(e.getClass().getName()+": "+e.getMessage());
+      }
+      return false;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
