@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/index.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="js/index.js"></script>
@@ -14,13 +16,14 @@
 <body>
 <div class="container">
   
-  <div class="row"><!--Row1-->
-    <div class="col-md-6">
-      <h2 id="logo">OnlineBank</h2>
+  <div class="row" id="header"><!--Row1-->
+    <div class="col-md-6" id="logo-col">
+      <h1 id="logo">OnlineBank</h1>
+      <h3>Login to our secure financial services site </h3>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 contact-us">
       <ul>
-        <li>Contact Us</li>
+          <li><a href="contact.html" target="_blank">Contact Us</a></li>
       </ul>
     </div>
   </div><!--End Row1-->
@@ -29,7 +32,7 @@
     <div class="col-md-3">
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" id="loginForm">
       <form  name="login" action="login" onsubmit="return validateForm()" method="post">
         <div class="form-group">
           <label for="email">Email address:</label>
@@ -53,40 +56,13 @@
       <p>OnlineBank provides you banking services at the comfort of your home. OnlineBank is offered by Software Engineers, Kene and Gemal and it affiliates, you agree to the terms and conditions of the Financial Services Terms, Cardholder and Electronic Financial Services Terms and Conditions and/or; the Business Access Services Schedule, and/or; the Terms and Agreement and Disclosure for mutual fund accounts held with us.</p>
     </div>
   </div><!--End Row3-->
+  
+  <footer class="footer"><!--footer-->
+      <div class="container">
+        <p class="text-muted">&copy 2017</p>
+      </div>
+    </footer><!--footer-->
 
 </div>
 </body>
 </html>
-  
-  
-
-  <!--  <center>
-         <div class="jumbotron text-center">
-  <h1>Title</h1>
-  <p>Formal description of the bank</p>
-</div>
-  <div class="row" style="padding:200px; height:50%; float: middle">
-          <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>random text</p>
-      <p>more random text</p>
-    </div>
-    <div class="col-sm-8">
-        <form name="login" action="login" onsubmit="return validateForm()" method="post">
-            Email:<br>
-            <input type="text" name="email">
-            <br>
-            Password:<br>
-            <input type="password" name="password">
-            <br><br>
-            <input type="submit" value="Login">
-            <button type="button" class="btn-default" onclick="window.location.href='register.html'">Register</button>
-        </form>
-    </div>
-  </div>
-      <div class="row" style="top:80%; height: 20%;">
-        <h3>The bank</h3>
-        <p>Very bank, wow</p>
-        <p>Such descriptions</p>
-      </div>
-    </center>-->
