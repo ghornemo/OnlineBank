@@ -27,8 +27,32 @@ body {
   border-radius: 50px;
 }
 
+#secure img{
+    width: 180px;
+    height: 180px;
+    margin: auto;
+}
+
 #loginForm {
-	padding-bottom: 50px; 
+    padding-bottom: 50px; 
+}
+
+#loginForm p a {
+    margin-left: 300px;
+}
+
+.sideButton {
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+}
+
+#guest {
+    padding: 25px 42px;
 }
 
 #description {
@@ -39,7 +63,7 @@ body {
 .footer {
     position: absolute;
     bottom: 0;
-    width: 90%;
+    width: 87%;
     height: 60px;
     background-color: #f5f5f5;
 }
