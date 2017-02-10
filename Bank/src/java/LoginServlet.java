@@ -65,9 +65,9 @@ public class LoginServlet extends HttpServlet {
       if(rs.next()) {
           authentication = rs.getString("password");
       }
-      conn.close();
       if(authentication.equals(pass))
         return true;
+      conn.close();
       return false;
       } catch (Exception e) {
          e.printStackTrace();
