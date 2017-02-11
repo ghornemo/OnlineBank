@@ -1,8 +1,6 @@
 function validateForm() {
-    var x = document.getElementById("firstName").value;
-    alert(x);
-    if (x === "") {
-        x.style.backgroundColor=red;
+    var x = document.forms["register"]["firstName"].value;
+    if (x == "") {
         alert("Name must be filled out");
         return false;
     }
@@ -11,7 +9,7 @@ function validateForm() {
         x.style.backgroundColor=red;
         alert("Name must be filled out");
         return false;
-    }
+}
     var x = document.forms["register"]["address"].value;
     if (x === "") {
         x.style.backgroundColor=red;
