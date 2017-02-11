@@ -18,8 +18,8 @@ public class SQL {
       try {
          Class.forName("org.postgresql.Driver");
          conn = DriverManager
-            .getConnection("jdbc:postgresql://webserver.hopto.org:5432/bank",
-            "admin", "admin");
+            .getConnection("jdbc:postgresql://159.203.41.250/bank",
+            "postgres", "3782893");
       System.out.println("Opened database successfully");
       } catch (Exception e) {
          e.printStackTrace();

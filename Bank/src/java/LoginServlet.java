@@ -33,22 +33,30 @@ public class LoginServlet extends HttpServlet {
         String status = "";
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        if(login(email, password))
+        boolean success = login(email,password);
+        if(success)
             status = "Successful login";
         else
             status = "Invalid login details";
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Login response: " + status + "</h1>");
-            out.println("<h1>for email: " + email + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        status += success;
+        //Unsuccessful Login
+        if(!success) {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet LoginServlet</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Login response: " + status + "</h1>");
+                out.println("<h1>for email: " + email + "</h1>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        //Successful login
+        }else{
+            response.sendRedirect("account.html");
         }
     }
     
@@ -59,11 +67,13 @@ public class LoginServlet extends HttpServlet {
       System.out.println("Creating statement...");
       Statement stmt = conn.createStatement();
       String sql;
-      sql = "select password from clients where email="+email+";";
+      sql = "select password from clients where email='"+email+"';";
       ResultSet rs = stmt.executeQuery(sql);
       String authentication = "";
       if(rs.next()) {
-          authentication = rs.getString("password");
+          authentication = rs.getString("password").trim();
+          System.out.println("Password received from database: "+authentication);
+          System.out.println("Password received from post: "+pass);
       }
       if(authentication.equals(pass))
         return true;
