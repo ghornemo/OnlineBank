@@ -9,14 +9,18 @@
   <h1>Title</h1>
   <p>Formal description of the bank</p>
 </div>
-    <form name="register" onsubmit="return validateForm()" method="post">
+    <form name="register" onsubmit="return validateForm()" method="post" action="register" >
          <div class="row">
             First name:<br>
-            <input type="text" name="firstName">
+            <input type="text" name="firstName" id="firstName">
         </div>
          <div class="row">
             Last name:<br>
-            <input type="text" name="lastName">
+            <input type="text" name="lastName" id="lastName">
+        </div>
+         <div class="row">
+            Date of Birth:<br>
+            <input type="date" name="dob" value="" placeholder="YY-MM-DD">
         </div>
          <div class="row">
             Address:<br>
@@ -28,24 +32,30 @@
         </div>
          <div class="row">
             Phone number:<br>
-            <input type="text" name="phone">
-        </div>
-         <div class="row">
-            Date of Birth:<br>
-            <input type="text" name="firstName">
+            <input type="text" name="phone" placeholder="(###)###-####">
         </div>
          <div class="row">
             <br>
             Security question 1:<br>
+            <select name="questions">
+                <option value="Q1">What is the model of your first car?</option>
+                <option value="Q2">What is your mother's maiden name?</option>
+                <option value="Q3">What was your first dream job?</option>
+                <option value="Q4">What is the name of your first pet?</option>
+  </select>
         </div>
-            <input type="text" name="firstName">
          <div class="row">
             Security answer 1:<br>
             <input type="text" name="answer1">
         </div>
          <div class="row">
             Security question 2:<br>
-            <input type="text" name="firstName">
+            <select name="questions">
+                <option value="Q1">What is the model of your first car?</option>
+                <option value="Q2">What is your mother's maiden name?</option>
+                <option value="Q3">What was your first dream job?</option>
+                <option value="Q4">What is the name of your first pet?</option>
+            </select>
         </div>
          <div class="row">
             Security answer 2:<br>
