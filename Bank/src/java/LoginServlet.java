@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
         }else{
             try {
                 //Test email to signal successful login
-                new mailer().sendMail("gemal.horne@unb.ca", "Success login", "Congratulations for registering for our online services at Online Bank!");
+                //new mailer().sendMail("gemal.horne@unb.ca", "Success login", "Congratulations for registering for our online services at Online Bank!");
             } catch (Exception e) {
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, e);
             }
