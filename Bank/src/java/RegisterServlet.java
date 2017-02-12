@@ -48,17 +48,23 @@ public class RegisterServlet extends HttpServlet {
         String question2 = request.getParameter("question2");
         String answer2 = request.getParameter("answer2");
         
+        /////////////////////////////////////////////////////////////
+        //TODO
         //Connect to database
-        //make SQL.registrationRequest()
-        //if returns true, prompt user email has been sent
+        //using SQL.registrationRequest() in SQL.java
+        //In there check if email address already exists in database
+        //If not Insert registration data into database
+        //if insertion is successful prompt user email will be sent
+        //use send mailer.java to send email as done below.
+        //if email sends successfully prompt user to checkemail for verification.
+        /////////////////////////////////////////////////////////////
         
         //email verification.
         int pin = new Random().nextInt(99999);
         String topic = "Verify your bank account";
         String message = "This is an automated email send by Online Bank. You have ";
                 message += "recently applied for a bank account with OnlineBank.\n";
-                message += "Your verification key: "+pin;
-                
+                message += "Your verification key: "+pin;        
         new mailer().sendMail(email, topic, message);
         
         try (PrintWriter out = response.getWriter()) {
