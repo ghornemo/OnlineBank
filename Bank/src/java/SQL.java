@@ -29,7 +29,8 @@ import javax.naming.NamingException;
  * @author ghornemo
  */
 public class SQL {
-        public static Connection database() {
+    
+    public static Connection database() {
               Connection conn = null;
       try {
          Class.forName("org.postgresql.Driver");
@@ -45,7 +46,7 @@ public class SQL {
         return conn;
     }
 
-        public static boolean loginRequest(String email, String pass) {
+    public static boolean loginRequest(String email, String pass) {
       Connection conn = database();
       try {
      //Execute a query
@@ -69,6 +70,10 @@ public class SQL {
          System.err.println(e.getClass().getName()+": "+e.getMessage());
       }
       return false;
+    }
+    
+    public static boolean registrationRequest(){
+        return false;
     }
         
         
