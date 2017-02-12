@@ -6,6 +6,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,18 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        
+        int pin = new Random().nextInt(99999);
+        
+        String topic = "Verify your bank account";
+        String message = "This is an automated email send by Online Bank. You have ";
+                message += "recently applied for a bank account with OnlineBank.\n";
+                message += "Your verification key: "+pin;
+                
+                new mailer().sendMail(email, topic, message);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

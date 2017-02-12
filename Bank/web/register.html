@@ -393,3 +393,79 @@
     </body>
 
 </html>
+=======
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/register.js"></script>
+<div class="container" style="padding:200px; height:50%; float: middle">
+    <center>
+         <div class="jumbotron text-center">
+  <h1>Title</h1>
+  <p>Formal description of the bank</p>
+</div>
+    <form name="register" onsubmit="return validateForm()" method="post" action="register" >
+         <div class="row form-group">
+            First name:<br>
+            <input type="text" name="firstName" id="firstName">
+        </div>
+         <div class="row form-group">
+            Last name:<br>
+            <input type="text" name="lastName" id="lastName">
+        </div>
+         <div class="row form-group">
+            Date of Birth:<br>
+            <input type="date" name="dob" value="" placeholder="YY-MM-DD">
+        </div>
+         <div class="row form-group">
+            Address:<br>
+            <input type="text" name="address">
+        </div>
+         <div class="row form-group">
+            Email:<br>
+            <input type="email" name="email">
+        </div>
+         <div class="row form-group">
+            Phone number:<br>
+            <input type="text" name="phone" placeholder="(###)###-####">
+        </div>
+         <div class="row form-group">
+            <br>
+            Security question 1:<br>
+            <select name="questions">
+                <option value="Q1">What is the model of your first car?</option>
+                <option value="Q2">What is your mother's maiden name?</option>
+                <option value="Q3">What was your first dream job?</option>
+                <option value="Q4">What is the name of your first pet?</option>
+  </select>
+        </div>
+         <div class="row form-group">
+            Security answer 1:<br>
+            <input type="text" name="answer1">
+        </div>
+         <div class="row form-group">
+            Security question 2:<br>
+            <select name="questions">
+                <option value="Q1">What is the model of your first car?</option>
+                <option value="Q2">What is your mother's maiden name?</option>
+                <option value="Q3">What was your first dream job?</option>
+                <option value="Q4">What is the name of your first pet?</option>
+            </select>
+        </div>
+        <div class="row form-group">
+            Security answer 2:<br>
+            <input type="text" name="answer2">
+        </div>
+         <div class="row form-group">
+            Password:<br>
+            <input type="password" name="password">
+        </div>
+         <div class="row form-group">
+            Confirm Password:<br>
+            <input type="password" name="password2">
+        </div>
+            <br><br>
+            <input type="submit" value="Register">
+            <button type="button" class="btn-default" onclick="window.location.href='index.html'">previous</button>
+    </form>
+    </center>
+</div>
