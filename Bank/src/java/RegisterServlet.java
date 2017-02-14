@@ -6,6 +6,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,23 +32,27 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String dob = request.getParameter("dob");
-        String phone = request.getParameter("phone");
-        String addressLine1 = request.getParameter("address-line1");
-        String addressLine2 = request.getParameter("address-line2");
-        String city = request.getParameter("city");
-        String region = request.getParameter("region");
-        String postalCode = request.getParameter("postal-code");
-        String country = request.getParameter("country");
-        String question1 = request.getParameter("question1");
-        String answer1 = request.getParameter("answer1");
-        String question2 = request.getParameter("question2");
-        String answer2 = request.getParameter("answer2");
+        ArrayList<String> infoList = new ArrayList<String>();
         
+        infoList.add(request.getParameter("firstName"));
+        infoList.add(request.getParameter("lastName"));   
+        infoList.add(request.getParameter("email"));
+        infoList.add(request.getParameter("password"));
+        infoList.add(request.getParameter("dob"));
+        infoList.add(request.getParameter("phone"));
+        infoList.add(request.getParameter("address-line1"));
+        infoList.add(request.getParameter("address-line2"));
+        infoList.add(request.getParameter("city"));
+        infoList.add(request.getParameter("region"));
+        infoList.add(request.getParameter("postal-code"));
+        infoList.add(request.getParameter("country"));
+        infoList.add(request.getParameter("question1"));
+        infoList.add(request.getParameter("answer1"));
+        infoList.add(request.getParameter("question2"));
+        infoList.add(request.getParameter("answer2"));
+        
+        SQL.registrationRequest(infoList);   //send to add info to database.
+             
         /////////////////////////////////////////////////////////////
         //TODO
         //Connect to database
@@ -59,14 +64,6 @@ public class RegisterServlet extends HttpServlet {
         //if email sends successfully prompt user to checkemail for verification.
         /////////////////////////////////////////////////////////////
         
-        //email verification.
-        int pin = new Random().nextInt(99999);
-        String topic = "Verify your bank account";
-        String message = "This is an automated email send by Online Bank. You have ";
-                message += "recently applied for a bank account with OnlineBank.\n";
-                message += "Your verification key: "+pin;        
-        new mailer().sendMail(email, topic, message);
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -75,9 +72,6 @@ public class RegisterServlet extends HttpServlet {
             out.println("<title>Servlet RegisterServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println(firstName + "<br />" + lastName + "<br />" + email + "<br />" + dob  + "<br />" + phone  + "<br />" + 
-                        addressLine1  + "<br />" + addressLine2  + "<br />" + city  + "<br />" + region + "<br />" + postalCode  + "<br />" +
-                        country  + "<br />" + question1  + "<br />" + answer1  + "<br />" + question2  + "<br />" + answer2);
             out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
