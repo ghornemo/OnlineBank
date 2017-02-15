@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
         String status = "";
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        boolean success = SQL.loginRequest(email,password).trim();
+        boolean success = SQL.loginRequest(email,password);
         if(success)
             status = "Successful login";
         else
