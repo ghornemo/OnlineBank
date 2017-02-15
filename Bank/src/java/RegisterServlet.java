@@ -31,11 +31,11 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         ArrayList<String> infoList = new ArrayList<String>();
         
         infoList.add(request.getParameter("firstName"));
-        infoList.add(request.getParameter("lastName"));   
+        infoList.add(request.getParameter("lastName"));
         infoList.add(request.getParameter("email"));
         infoList.add(request.getParameter("password"));
         infoList.add(request.getParameter("dob"));
@@ -51,8 +51,9 @@ public class RegisterServlet extends HttpServlet {
         infoList.add(request.getParameter("question2"));
         infoList.add(request.getParameter("answer2"));
         
+        
         SQL.registrationRequest(infoList);   //send to add info to database.
-             
+
         /////////////////////////////////////////////////////////////
         //TODO
         //Connect to database
@@ -69,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");            
+            out.println("<title>Servlet RegisterServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");

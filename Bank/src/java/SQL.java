@@ -25,60 +25,63 @@ import javax.naming.NamingException;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ghornemo
  */
 public class SQL {
-    
+
     public static Connection database() {
-              Connection conn = null;
-      try {
-         Class.forName("org.postgresql.Driver");
-         conn = DriverManager
-            .getConnection("jdbc:postgresql://159.203.41.250/bank",
-            "postgres", "3782893");
-      System.out.println("Opened database successfully");
-      } catch (Exception e) {
-         e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-          return null;
-      }
+        Connection conn = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager
+                    .getConnection("jdbc:postgresql://159.203.41.250/bank",
+                            "postgres", "3782893");
+            System.out.println("Opened database successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            return null;
+        }
         return conn;
     }
-    
+
     /**
-     * loginRequest(String email, String pass): 
+     * loginRequest(String email, String pass):
      */
     public static boolean loginRequest(String email, String pass) {
-      Connection conn = database();
-      try {
-     //Execute a query
-      System.out.println("Creating statement...");
-      Statement stmt = conn.createStatement();
-      String sql;
-      sql = "select password from clients where email='"+email+"';";
-      ResultSet rs = stmt.executeQuery(sql);
-      String authentication = "";
-      if(rs.next()) {
-          authentication = rs.getString("password").trim();
-          System.out.println("Password received from database: "+authentication);
-          System.out.println("Password received from post: "+pass);
-      }
-      if(authentication.equals(pass))
-        return true;
-      conn.close();
-      return false;
-      } catch (Exception e) {
-         e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-      }
-      return false;
+        Connection conn = database();
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select password from clients where email='" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            String authentication = "";
+            if (rs.next()) {
+                authentication = rs.getString("password").trim();
+                System.out.println("Password received from database: " + authentication);
+                System.out.println("Password received from post: " + pass);
+            }
+            if (authentication.equals(pass)) {
+                return true;
+            }
+            conn.close();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return false;
     }
-    
-    public static boolean registrationRequest(ArrayList<String> infoList){
-        
+
+    /**
+     * registrationRequest(ArrayList<String> infoList):
+     */
+    public static boolean registrationRequest(ArrayList<String> infoList) {
+
         String firstName = infoList.get(0);
         String lastName = infoList.get(1);
         String email = infoList.get(2);
@@ -95,11 +98,11 @@ public class SQL {
         String answer1 = infoList.get(13);
         String question2 = infoList.get(14);
         String answer2 = infoList.get(15);
-        
+
         Connection conn = database(); //get database connection.
-        
+
         try {
-            
+
             System.out.println("Creating statement...");
             Statement stmt = conn.createStatement();
             String sql;
@@ -111,12 +114,13 @@ public class SQL {
             sql = "select email from clients where email='" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
 
-            if (!rs.isBeforeFirst()) {
+            if (!rs.isBeforeFirst()) { 
+                //email doesn't exist in database.
                 
                 sql = " insert into users (accountNumber, firstName, lastName, email, password,"
                         + " dob, phone, addressLine1, addressLine2, city, region"
                         + " postalCode, country, question1, question2, answer1, answer2)"
-                        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 // create the mysql insert preparedstatement
                 PreparedStatement preparedStmt = conn.prepareStatement(sql);
@@ -137,24 +141,27 @@ public class SQL {
                 preparedStmt.setString(15, question2);
                 preparedStmt.setString(16, answer1);
                 preparedStmt.setString(17, answer2);
-                
-                
 
-            }else{
+                preparedStmt.executeQuery();
+
+            } else {
                 //Email Already Exist for User.
-                
+                return false;
             }
-             
-            //ResultSet rs = stmt.executeQuery();
-            String authentication = "";
-            
-            conn.close();
+
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            }
         }
-        return false;
+
+        return true;
     }
-        
-        
+
 }
