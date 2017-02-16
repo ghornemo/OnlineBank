@@ -52,7 +52,7 @@ public class RegisterServlet extends HttpServlet {
         infoList.add(request.getParameter("answer2"));
         
         
-        SQL.registrationRequest(infoList);   //send to add info to database.
+        boolean userCreated = SQL.registrationRequest(infoList);   //send to add info to database.
 
         /////////////////////////////////////////////////////////////
         //TODO
@@ -64,18 +64,39 @@ public class RegisterServlet extends HttpServlet {
         //use send mailer.java to send email as done below.
         //if email sends successfully prompt user to checkemail for verification.
         /////////////////////////////////////////////////////////////
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        if (userCreated) {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet RegisterServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
+                out.println("<p>" + infoList.get(0) + "</br>" + infoList.get(1) + "</br>" + infoList.get(2) + "</br>"
+                        + infoList.get(3) + "</br>" + infoList.get(4) + "</br>" + infoList.get(5) + "</br>" + infoList.get(6) + "</br>"
+                        + infoList.get(7) + "</br>" + infoList.get(8) + "</br>" + infoList.get(9) + "</br>" + infoList.get(10) + "</br>"
+                        + infoList.get(11) + "</br>" + infoList.get(12) + "</br>" + infoList.get(13) + "</br>" + infoList.get(14) + "</br>"
+                        + infoList.get(15) + "</p>");
+                out.println("<p>"+"You Have been registered!!!"+"</b>"+"A verification email has been sent."+"</p>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        }else{
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet RegisterServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
+                out.println("<p>"+"User Already exists"+"</p>");
+                out.println("</body>");
+                out.println("</html>");
+            }
         }
     }
 

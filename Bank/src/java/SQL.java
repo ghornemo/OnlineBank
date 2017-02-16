@@ -82,22 +82,22 @@ public class SQL {
      */
     public static boolean registrationRequest(ArrayList<String> infoList) {
 
-        String firstName = infoList.get(0);
-        String lastName = infoList.get(1);
-        String email = infoList.get(2);
-        String password = infoList.get(3);
-        String dob = infoList.get(4);
-        String phone = infoList.get(5);
-        String addressLine1 = infoList.get(6);
-        String addressLine2 = infoList.get(7);
-        String city = infoList.get(8);
-        String region = infoList.get(9);
-        String postalCode = infoList.get(10);
-        String country = infoList.get(11);
-        String question1 = infoList.get(12);
-        String answer1 = infoList.get(13);
-        String question2 = infoList.get(14);
-        String answer2 = infoList.get(15);
+        String firstName = infoList.get(0).trim();
+        String lastName = infoList.get(1).trim();
+        String email = infoList.get(2).trim();
+        String password = infoList.get(3).trim();
+        String dob = infoList.get(4).trim();
+        String phone = infoList.get(5).trim();
+        String addressLine1 = infoList.get(6).trim();
+        String addressLine2 = infoList.get(7).trim();
+        String city = infoList.get(8).trim();
+        String region = infoList.get(9).trim();
+        String postalCode = infoList.get(10).trim();
+        String country = infoList.get(11).trim();
+        String question1 = infoList.get(12).trim();
+        String answer1 = infoList.get(13).trim();
+        String question2 = infoList.get(14).trim();
+        String answer2 = infoList.get(15).trim();
 
         Connection conn = database(); //get database connection.
 
@@ -108,18 +108,18 @@ public class SQL {
             String sql;
 
             //generate account number
-            String accountNumber = "";
+            String accountNumber = "000000000000";
 
             //check if email already exists(client already has an account)
-            sql = "select email from clients where email='" + email + "';";
+            sql = "select email from client where email='" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
 
             if (!rs.isBeforeFirst()) { 
                 //email doesn't exist in database.
                 
-                sql = " insert into users (accountNumber, firstName, lastName, email, password,"
-                        + " dob, phone, addressLine1, addressLine2, city, region"
-                        + " postalCode, country, question1, question2, answer1, answer2)"
+                sql = " insert into client (accountnumber, firstname, lastname, email, password,"
+                        + " dob, phone, addressline1, addressline2, city, region,"
+                        + " postalcode, country, question1, question2, answer1, answer2)"
                         + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 // create the mysql insert preparedstatement
