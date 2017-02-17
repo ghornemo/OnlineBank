@@ -56,17 +56,21 @@ public class RegisterServlet extends HttpServlet {
 
         /////////////////////////////////////////////////////////////
         //TODO
-        //Connect to database
-        //using SQL.registrationRequest() in SQL.java
-        //In there check if email address already exists in database
-        //If not Insert registration data into database
+        //*done*Connect to database
+        //*done*using SQL.registrationRequest() in SQL.java
+        //*done*In there check if email address already exists in database
+        //*done*If not Insert registration data into database
         //if insertion is successful prompt user email will be sent
         //use send mailer.java to send email as done below.
         //if email sends successfully prompt user to checkemail for verification.
         /////////////////////////////////////////////////////////////
         if (userCreated) {
             try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
+                
+                //send verification email.
+                new mailer().sendMail(infoList.get(2), "Success login", "Congratulations for registering for our online services at Online Bank!");
+
+                
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");

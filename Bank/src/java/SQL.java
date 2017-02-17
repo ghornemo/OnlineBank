@@ -57,7 +57,7 @@ public class SQL {
             System.out.println("Creating statement...");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "select password from clients where email='" + email + "';";
+            sql = "select password from client where email='" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
             String authentication = "";
             if (rs.next()) {
