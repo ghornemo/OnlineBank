@@ -72,7 +72,7 @@
                 </div>
                     
                 <div class="col-sm-2 sidenav">
-                    <h1>Account balances</h1>
+                    <h1>Transfersw</h1>
                     <div class="well">
                         <p id="checking">Checkings: $0</p>
                     </div>
