@@ -20,9 +20,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -65,16 +67,22 @@ public class LoginServlet extends HttpServlet {
                 out.println("<h1>for email: " + email + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
+                
             }
         //Successful login
         }else{
-            try {
-                //Test email to signal successful login
-                new mailer().sendMail("gemal.horne@unb.ca", "Success login", "Congratulations for registering for our online services at Online Bank!");
-            } catch (Exception e) {
-                Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, e);
-            }
-            response.sendRedirect("account.html");
+            HttpSession session = request.getSession();
+            session.setAttribute("email", email);
+            
+            //set session to expire in 1 min
+            session.setMaxInactiveInterval(1000);
+            Cookie emailCookie = new Cookie("email", email);
+            response.addCookie(emailCookie);
+            
+            //Get endCoded URL string
+            String encodedURL = response.encodeRedirectURL("account.html");
+            
+            response.sendRedirect(encodedURL);
         }
     }
     

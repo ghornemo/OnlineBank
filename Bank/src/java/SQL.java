@@ -46,6 +46,93 @@ public class SQL {
         }
         return conn;
     }
+    
+    public static String[] answers(String email) {
+        Connection conn = database();
+        String[] answers = new String[2];
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select answer1, answer2 from clients where email='" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {//Should have 2 questions...
+                answers[0] = rs.getString("question1").trim();
+                answers[1] = rs.getString("question2").trim();
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return answers;
+    }
+    
+        public static String[] questions(String email) {
+        Connection conn = database();
+        String[] questions = new String[2];
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select question1, question2 from clients where email='" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            String authentication = "";
+            if (rs.next()) {//Should have 2 questions...
+                questions[0] = rs.getString("question1").trim();
+                questions[1] = rs.getString("question2").trim();
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return questions;
+    }
+    
+    public static boolean existingIP(String email, String IP) {
+        Connection conn = database();
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select IP from AccessPoints where email='" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            String authentication = "";
+            while (rs.next()) {
+                authentication = rs.getString("IP").trim();
+            if (authentication.equals(IP)) {
+                conn.close();
+                return true;
+            }
+            }
+            conn.close();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return false;
+    }
+    
+        public static void addIP(String email, String IP) {
+        Connection conn = database();
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "INSERT INTO AccessPoints (email, ip) values ('" + email + "', '"+IP+"');";
+            stmt.executeUpdate(sql);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+    }
 
     /**
      * loginRequest(String email, String pass):

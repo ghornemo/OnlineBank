@@ -114,8 +114,7 @@ public class SessionFilter implements Filter {
             HttpSession session = req.getSession(false);//Session making a request.
 
             if(session == null) { //If the session is expired, forward to login page.
-                //Here, we check if they are connected from an unfamiliar IP
-                //For the purpose of security questions...
+                //if no existing session, redirect to main page for login
                 res.sendRedirect("index.html");
                 //chain.doFilter();
             } else {//Else, continue like normal...
