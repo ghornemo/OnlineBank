@@ -1,7 +1,11 @@
 body {
-	font-family: "Verdana", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 nav {
     margin-bottom: 20px;
+}
+
+options {
+    background-color: #DCDCDC;
 }

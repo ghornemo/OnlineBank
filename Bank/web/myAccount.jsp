@@ -55,7 +55,7 @@
         <div class="container-fluid text-center">    
             
             <div class="row content">
-                <div class="col-sm-2 sidenav">
+                <div class="col-sm-2 sidenav options">
                     <div><a href="#">Change Password</a></div>
                     <div><a href="#">Loan application & rates</a></div>
                     <div><a href="#">Transaction History</a></div>
@@ -66,8 +66,9 @@
                     <h1>Welcome <%=client.getFirstName() + " " + client.getLastName()%></h1>
                     <p>Check Your Account Balances And Make Transactions With Ease.</p>
                     <hr>
-                    <h3>Test</h3>
-                    <p>Lorem ipsum...</p>
+                    <h3>Checkings Account</h3>
+                    <hr>
+                    <h3>Savings Account</h3>
                 </div>
                     
                 <div class="col-sm-2 sidenav">
