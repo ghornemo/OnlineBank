@@ -49,6 +49,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean success = SQL.loginRequest(email,password);
+        String IP = request.getRemoteAddr();
         if(success)
             status = "Successful login";
         else
@@ -72,19 +73,29 @@ public class LoginServlet extends HttpServlet {
             }
         //Successful login
         }else{
-            HttpSession session = request.getSession();
-            session.setAttribute("email", email);
-            session.setAttribute("client", new Client(email));
-            
-            //set session to expire in 1 min
-            session.setMaxInactiveInterval(1000);
-            Cookie emailCookie = new Cookie("email", email);
-            response.addCookie(emailCookie);
-            
-            //Get endCoded URL string
-            String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
-            
-            response.sendRedirect(encodedURL);
+            if(SQL.existingIP(email, IP)) {//existing IP
+                HttpSession session = request.getSession();
+                session.setAttribute("email", email);
+                session.setAttribute("client", new Client(email));
+
+                //set session to expire in 1 min
+                session.setMaxInactiveInterval(1000);
+                Cookie emailCookie = new Cookie("email", email);
+                response.addCookie(emailCookie);
+
+                //Get endCoded URL string
+                String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
+
+                response.sendRedirect(encodedURL);
+            }else{//New IP
+                String[] questions = SQL.questions(email);
+                Cookie cookie1 = new Cookie("question1", questions[0]);
+                response.addCookie(cookie1);
+                Cookie cookie2 = new Cookie("question2", questions[1]);
+                response.addCookie(cookie2);
+                String encodedURL = response.encodeRedirectURL("/Bank/questions.jsp");
+                response.sendRedirect(encodedURL);
+            }
         }
     }
     

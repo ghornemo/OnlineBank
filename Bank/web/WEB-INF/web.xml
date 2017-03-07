@@ -14,12 +14,6 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
-    <filter-mapping>
-        <filter-name>SessionFilter</filter-name>
-        <servlet-name>Login</servlet-name>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>LoginServlet</servlet-class>

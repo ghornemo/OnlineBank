@@ -112,7 +112,7 @@ public class SessionFilter implements Filter {
             HttpServletResponse res = (HttpServletResponse) response;
 
             HttpSession session = req.getSession(false);//Session making a request.
-
+            //if(request)
             if(session == null) { //If the session is expired, forward to login page.
                 //if no existing session, redirect to main page for login
                 res.sendRedirect("index.html");

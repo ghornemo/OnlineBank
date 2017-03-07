@@ -5,6 +5,7 @@
  */
 
 
+
 function loadQuestions() {
     var q1 = getCookie("question1");
     var q2 = getCookie("question2");
@@ -14,3 +15,4 @@ function loadQuestions() {
 $question1.innerHTML = q1;
 $question2.innerHTML = q2;
 }
+loadQuestions();

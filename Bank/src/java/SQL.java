@@ -55,11 +55,11 @@ public class SQL {
             System.out.println("Creating statement...");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "select answer1, answer2 from clients where email='" + email + "';";
+            sql = "select answer1, answer2 from client where email='" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {//Should have 2 questions...
-                answers[0] = rs.getString("question1").trim();
-                answers[1] = rs.getString("question2").trim();
+                answers[0] = rs.getString("answer1").trim();
+                answers[1] = rs.getString("answer2").trim();
             }
             conn.close();
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class SQL {
             System.out.println("Creating statement...");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "select question1, question2 from clients where email='" + email + "';";
+            sql = "select question1, question2 from client where email='" + email + "';";
             ResultSet rs = stmt.executeQuery(sql);
             String authentication = "";
             if (rs.next()) {//Should have 2 questions...

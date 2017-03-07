@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import DefinedClass.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -92,7 +94,19 @@ public class QuestionServlet extends HttpServlet {
             if(submitted1.equalsIgnoreCase(realAnswer[0]) && submitted2.equalsIgnoreCase(realAnswer[1])) {
                 //Successfully answered security questions
                 SQL.addIP(email, IP);
-                res.sendRedirect("/Questions");
+                HttpSession session = request.getSession();
+                session.setAttribute("email", email);
+                session.setAttribute("client", new Client(email));
+
+                //set session to expire in 1 min
+                session.setMaxInactiveInterval(1000);
+                Cookie emailCookie = new Cookie("email", email);
+                response.addCookie(emailCookie);
+
+                //Get endCoded URL string
+                String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
+
+                response.sendRedirect(encodedURL);
             }else {
                 //Unsuccessfully answered security questions
                 processRequest(request, response);
