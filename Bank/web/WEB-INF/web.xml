@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>SessionFilter</filter-class>
+        <init-param>
+            <param-name>Name1</param-name>
+            <param-value>Value</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <servlet-name>PasswordResetServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <servlet-name>Login</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>LoginServlet</servlet-class>
