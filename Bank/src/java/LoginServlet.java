@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import DefinedClass.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -73,6 +74,7 @@ public class LoginServlet extends HttpServlet {
         }else{
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
+            session.setAttribute("client", new Client(email));
             
             //set session to expire in 1 min
             session.setMaxInactiveInterval(1000);
@@ -80,7 +82,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(emailCookie);
             
             //Get endCoded URL string
-            String encodedURL = response.encodeRedirectURL("account.html");
+            String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
             
             response.sendRedirect(encodedURL);
         }
