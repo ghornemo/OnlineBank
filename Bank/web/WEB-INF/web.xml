@@ -20,10 +20,6 @@
         <servlet-name>PasswordResetServlet</servlet-name>
         <servlet-class>PasswordResetServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>AccountServlet</servlet-name>
-        <servlet-class>AccountServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -35,10 +31,6 @@
     <servlet-mapping>
         <servlet-name>PasswordResetServlet</servlet-name>
         <url-pattern>/reset</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AccountServlet</servlet-name>
-        <url-pattern>/myAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import DefinedClass.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -81,7 +82,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(emailCookie);
             
             //Get endCoded URL string
-            String encodedURL = response.encodeRedirectURL("/Bank/myAccount");
+            String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
             
             response.sendRedirect(encodedURL);
         }
