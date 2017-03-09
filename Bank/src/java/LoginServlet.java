@@ -48,46 +48,50 @@ public class LoginServlet extends HttpServlet {
         String status = "";
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        boolean success = SQL.loginRequest(email,password);
+        boolean success = SQL.loginRequest(email, password);
         String IP = request.getRemoteAddr();
-        if(success)
+        if (success) {
             status = "Successful login";
-        else
+        } else {
             status = "Invalid login details";
+        }
         status += success;
         //Unsuccessful Login
-        if(!success) {
+        if (!success) {
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet LoginServlet</title>");            
+                out.println("<title>Servlet LoginServlet</title>");
                 out.println("</head>");
                 out.println("<body>");
                 out.println("<h1>Login response: " + status + "</h1>");
                 out.println("<h1>for email: " + email + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
-                
-            }
-        //Successful login
-        }else{
-            if(SQL.existingIP(email, IP)) {//existing IP
-                HttpSession session = request.getSession();
-                session.setAttribute("email", email);
-                session.setAttribute("client", new Client(email));
 
-                //set session to expire in 1 min
-                session.setMaxInactiveInterval(1000);
-                Cookie emailCookie = new Cookie("email", email);
-                response.addCookie(emailCookie);
+            }
+            //Successful login
+        } else {
+            
+            //create session in all cases whether cx has exisiting ip or not.
+            HttpSession session = request.getSession();
+            session.setAttribute("email", email);
+            session.setAttribute("client", new Client(email));
+
+            //set session to expire in 1 min
+            session.setMaxInactiveInterval(1000);
+            Cookie emailCookie = new Cookie("email", email);
+            response.addCookie(emailCookie);
+
+            if (SQL.existingIP(email, IP)) {//existing IP
 
                 //Get endCoded URL string
                 String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
-
                 response.sendRedirect(encodedURL);
-            }else{//New IP
+
+            } else {//New IP
                 String[] questions = SQL.questions(email);
                 Cookie cookie1 = new Cookie("question1", questions[0]);
                 response.addCookie(cookie1);
@@ -98,9 +102,6 @@ public class LoginServlet extends HttpServlet {
             }
         }
     }
-    
-
-        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -47,7 +47,7 @@
                         <li><a href="#">Contact</a></li>-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
+                        <li><a href="\Bank\logout"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-2" id="toggle-container">
-                            <a id="toggle-summary">+</a>
+                            <a id="toggle-summary">-</a>
                         </div>
                         <div class="col-sm-10">
                             <h4 id="summary-heading">My Personal Summary</h4>

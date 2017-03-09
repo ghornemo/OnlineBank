@@ -33,6 +33,11 @@ public class QuestionServlet extends HttpServlet {
             throws ServletException, IOException {
         //Handling the GET Request! Basically the same in all circumstances.
         response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession session = request.getSession();
+        if(session != null)
+            session.invalidate();
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
