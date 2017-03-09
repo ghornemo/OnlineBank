@@ -14,15 +14,12 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
-<<<<<<< HEAD
-=======
     <filter-mapping> 
         <filter-name>SessionFilter</filter-name>
         <url-pattern>/myAccount.jsp</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping> 
->>>>>>> e35114448cec1ca81436b3f9f6f95c25213b3141
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>LoginServlet</servlet-class>
