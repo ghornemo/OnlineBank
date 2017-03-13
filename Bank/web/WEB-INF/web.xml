@@ -20,6 +20,12 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/logout</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>LoginServlet</servlet-class>
@@ -45,16 +51,8 @@
         <servlet-class>QuestionServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>passwordServlet</servlet-name>
-        <servlet-class>passwordServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>etransferServlet</servlet-name>
-        <servlet-class>etransferServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>transferServlet</servlet-name>
-        <servlet-class>transferServlet</servlet-class>
+        <servlet-name>LogOutServlet</servlet-name>
+        <servlet-class>LogOutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -85,9 +83,7 @@
         <url-pattern>/swap</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <resource-ref>
         <res-ref-name>email</res-ref-name>

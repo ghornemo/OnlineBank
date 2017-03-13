@@ -1,11 +1,97 @@
 body {
     font-family: "Verdana", sans-serif;
+    margin: 0px;
+    padding: 0px;
 }
 
-nav {
-    margin-bottom: 20px;
+nav.navbar.navbar-inverse{
+    margin-bottom: 0;
 }
 
 options {
     background-color: #DCDCDC;
+}
+
+#summary-heading {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+#toggle-container {
+    padding-right: 0px;
+    width: 50px;
+}
+
+#toggle-summary {
+    display:block;
+    width:40px;
+    height:40px;
+    line-height:22px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    color:#f5f5f5;
+    text-align:center;
+    text-decoration:none;
+    background: #464646;
+    box-shadow: 0 0 3px gray;
+    font-size:20px;
+    font-weight:bold;
+    padding: 5px;
+    margin: 0px;
+}
+
+#toggle-summary:hover {
+    background: #262626;
+}
+
+#summary{
+    background: #f1f1f1;
+    width: 300px;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+table {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+th {
+    text-decoration: underline;
+}
+
+.vertical-menu {
+    width: 95%; /* Set a width if you like */
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+.sidenav{
+    background-color: #f1f1f1;
+    height: 729.4px;
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+}
+
+.sidenav h3{
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
