@@ -101,15 +101,15 @@
                             <div class="form-group">
                                 <label for="oldpwd">From:</label>
                                    <select class="form-control" id="from" name="from">
-                                    <option>Chequing</option>
-                                    <option>Savings</option>
+                                    <option>chequing</option>
+                                    <option>savings</option>
                                   </select>
                             </div>
                             <div class="form-group">
                                 <label for="account">To:</label>
                                    <select class="form-control" id="to" name="to">
-                                    <option>Chequing</option>
-                                    <option>Savings</option>
+                                    <option>chequing</option>
+                                    <option>savings</option>
                                   </select>
                             </div>
                             <div class="form-group">

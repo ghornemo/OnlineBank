@@ -149,7 +149,45 @@ public class SQL {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
+    
+    //For transferring between local accounts
+    public static boolean transfer(String email, float amount, String from, String to) {
+        Connection conn = database();
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select "+from+" from balances where email='" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            float balance = 0;
+            if (rs.next()) {
+                balance = rs.getFloat(from);
+            }
+            //Customer doesn't have enough cash to send this transfer.
+            if(balance < amount)
+                return false;
+            
+            
+            //Sender has enough funds & receiver is valid account
+            sql = "UPDATE balances SET "+from+" = "+from+" - "+amount+" WHERE email = '"+email+"';";
+            stmt.executeUpdate(sql);
+            sql = "UPDATE balances SET "+to+" = "+to+" + "+amount+" WHERE email = '"+email+"';";
+            stmt.executeUpdate(sql);
+            sql = "INSERT INTO transactions (email, amount, source, account) values ('" + email + "', -"+amount+" ,'Transfer', '"+from+"');";
+            stmt.executeUpdate(sql);
+            sql = "INSERT INTO transactions (email, amount, source, account) values ('" + email + "', "+amount+" ,'Transfer', '"+to+"');";
+            stmt.executeUpdate(sql);
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return false;
+    }
         
+    //For e-transfers
     public static boolean transfer(String from, String to, float amount, String account) {
         Connection conn = database();
         try {
