@@ -118,7 +118,23 @@ public class SQL {
         return false;
     }
     
-        public static void addIP(String email, String IP) {
+        public static void addTransaction(String email, float amount, String source, String account) {
+        Connection conn = database();
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "INSERT INTO transactions (email, amount, source, account) values ('" + email + "', "+amount+" ,'"+source+"', '"+account+"');";
+            stmt.executeUpdate(sql);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+    }
+    
+    public static void addIP(String email, String IP) {
         Connection conn = database();
         try {
             //Execute a query
@@ -162,6 +178,10 @@ public class SQL {
             sql = "UPDATE balances SET "+account+" = "+account+" - "+amount+" WHERE email = '"+from+"';";
             stmt.executeUpdate(sql);
             sql = "UPDATE balances SET chequing = chequing + "+amount+" WHERE email = '"+to+"';";
+            stmt.executeUpdate(sql);
+            sql = "INSERT INTO transactions (email, amount, source, account) values ('" + from + "', -"+amount+" ,'"+to+"', '"+account+"');";
+            stmt.executeUpdate(sql);
+            sql = "INSERT INTO transactions (email, amount, source, account) values ('" + to + "', "+amount+" ,'"+from+"', 'chequing');";
             stmt.executeUpdate(sql);
             conn.close();
             return true;
