@@ -133,6 +133,36 @@ public class SQL {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
+        
+            /**
+     * loginRequest(String email, String pass):
+     */
+    public static boolean changePassword(String email, String oldpass, String newpass) {
+        Connection conn = database();
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select password from client where email='" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            String authentication = "";
+            if (rs.next()) {
+                authentication = rs.getString("password").trim();
+            }
+            if (authentication.equals(oldpass)) {//Correct old password, allow the request.
+                sql = "UPDATE client SET password = '"+newpass+"' WHERE email = '"+email+"';";
+                stmt.executeUpdate(sql);
+                return true;
+            }
+            conn.close();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return false;
+    }
 
     /**
      * loginRequest(String email, String pass):

@@ -14,6 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/account.css" />
+         <script src="js/account.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
@@ -56,7 +57,7 @@
             
             <div class="row content">
                 <div class="col-sm-2 sidenav options">
-                    <div><a href="#">Change Password</a></div>
+                    <div><a data-toggle="modal" data-target="#myModal">Change Password</a></div>
                     <div><a href="#">Loan application & rates</a></div>
                     <div><a href="#">Transaction History</a></div>
                     <div><a href="#">Support</a></div>
@@ -79,10 +80,126 @@
                     <div class="well">
                         <p id="savings">Savings: $0</p>
                     </div>
-                    <button type="button">Transfer Funds</button>
-                    <button type="button">Send Inter E-Transfer</button> 
+                    <button type="button" data-toggle="modal" data-target="#swapModal">Transfer Funds</button>
+                    <button type="button" data-toggle="modal" data-target="#transferModal">Send Inter E-Transfer</button> 
                 </div>
             </div>
         </div>
+                    
+                    <!-- Model for transferring funds between account -->
+        <div id="swapModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Transfer Funds</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form  name="swap" action="swap" method="post">
+                            <div class="form-group">
+                                <label for="oldpwd">From:</label>
+                                   <select class="form-control" id="from" name="from">
+                                    <option>Chequing</option>
+                                    <option>Savings</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="account">To:</label>
+                                   <select class="form-control" id="to" name="to">
+                                    <option>Chequing</option>
+                                    <option>Savings</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Select amount:</label>
+                                <input type="number" min="0" step=".01" class="form-control" id="amount" name="amount">
+                            </div>
+                            <button type="submit" class="btn btn-default" value="Submit">Submit</button>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>                      
+                    
+                    <!-- Model for sending e-transfer -->
+        <div id="transferModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Configure E-Transfer</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form  name="etransfer" action="etransfer" method="post">
+                            <div class="form-group">
+                                <label for="oldpwd">Recipient email:</label>
+                                <input type="email" class="form-control" id="receiver" name="receiver">
+                            </div>
+                            <div class="form-group">
+                                <label for="account">Select account:</label>
+                                   <select class="form-control" id="account" name="account">
+                                    <option>Chequing</option>
+                                    <option>Savings</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Select amount:</label>
+                                <input type="number" min="0" step=".01" class="form-control" id="amount" name="amount">
+                            </div>
+                            <button type="submit" class="btn btn-default" value="Submit">Submit</button>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>  
+                    <!-- Model for changing password -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Change Password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form  name="newpass" action="changePass" onsubmit="return validateForm()" method="post">
+                            <div class="form-group">
+                                <label for="oldpwd">Current Password:</label>
+                                <input type="password" class="form-control" id="oldpwd" name="oldPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="newpwd1">New Password:</label>
+                                <input type="password" class="form-control" id="newpwd1" name="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="newpwd2">Confirm Password:</label>
+                                <input type="password" class="form-control" id="newpwd2" name="newPassword2">
+                            </div>
+                            <button type="submit" class="btn btn-default" value="Submit">Submit</button>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>      
     </body>
 </html>

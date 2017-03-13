@@ -1,5 +1,4 @@
 package DefinedClass;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,6 +36,11 @@ public class Client {
     private String answer1;
     private String question2;
     private String answer2;
+    
+    public void email(String topic, String body) {
+        //Cannot find class: mailer?
+        //new mailer().sendMail(email, topic, body);
+    }
     
     public Client(String email){
         

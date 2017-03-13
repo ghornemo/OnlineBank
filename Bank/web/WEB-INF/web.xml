@@ -14,15 +14,12 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
-<<<<<<< HEAD
-=======
-    <filter-mapping> 
+    <filter-mapping>
         <filter-name>SessionFilter</filter-name>
         <url-pattern>/myAccount.jsp</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
-    </filter-mapping> 
->>>>>>> e35114448cec1ca81436b3f9f6f95c25213b3141
+    </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>LoginServlet</servlet-class>
@@ -47,6 +44,10 @@
         <servlet-name>QuestionServlet</servlet-name>
         <servlet-class>QuestionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>passwordServlet</servlet-name>
+        <servlet-class>passwordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -62,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>QuestionServlet</servlet-name>
         <url-pattern>/Questions</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>passwordServlet</servlet-name>
+        <url-pattern>/changePass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

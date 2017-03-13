@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-
-
 function loadQuestions() {
     var q1 = getCookie("question1");
     var q2 = getCookie("question2");
