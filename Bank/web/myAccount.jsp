@@ -141,7 +141,7 @@
                     <div class="modal-body">
                         <form  name="etransfer" action="etransfer" method="post">
                             <div class="form-group">
-                                <label for="oldpwd">Recipient email:</label>
+                                <label for="receiver">Recipient email:</label>
                                 <input type="email" class="form-control" id="receiver" name="receiver">
                             </div>
                             <div class="form-group">

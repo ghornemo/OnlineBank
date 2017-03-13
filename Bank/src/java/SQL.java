@@ -134,6 +134,44 @@ public class SQL {
         }
     }
         
+    public static boolean transfer(String from, String to, float amount, String account) {
+        Connection conn = database();
+        try {
+            //Execute a query
+            System.out.println("Creating statement...");
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select "+account+" from balances where email='" + from + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            float balance = 0;
+            if (rs.next()) {
+                balance = rs.getFloat(account);
+            }
+            //Customer doesn't have enough cash to send this transfer.
+            if(balance < amount)
+                return false;
+            
+            //Check to ensure the recipient is a valid account.
+            sql = "select email from balances where email='" + to + "';";
+            rs = stmt.executeQuery(sql);
+            if(rs.next()) {
+                if(!rs.getString("email").trim().equals(to))
+                    return false;
+            }else return false;
+            //Sender has enough funds & receiver is valid account
+            sql = "UPDATE balances SET "+account+" = "+account+" - "+amount+" WHERE email = '"+from+"';";
+            stmt.executeUpdate(sql);
+            sql = "UPDATE balances SET chequing = chequing + "+amount+" WHERE email = '"+to+"';";
+            stmt.executeUpdate(sql);
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return false;
+    }
+        
             /**
      * loginRequest(String email, String pass):
      */

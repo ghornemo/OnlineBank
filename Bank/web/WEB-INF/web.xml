@@ -48,6 +48,10 @@
         <servlet-name>passwordServlet</servlet-name>
         <servlet-class>passwordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>etransferServlet</servlet-name>
+        <servlet-class>etransferServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>passwordServlet</servlet-name>
         <url-pattern>/changePass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>etransferServlet</servlet-name>
+        <url-pattern>/etransfer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
