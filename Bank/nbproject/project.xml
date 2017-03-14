@@ -15,6 +15,9 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${libs.Java-EE-GlassFish-v3-Prelude.classpath}</file>
+                </library>
+                <library dirs="200">
                     <file>${file.reference.glassfish-modules}</file>
                     <path-in-war>WEB-INF/classes</path-in-war>
                 </library>
