@@ -1,5 +1,7 @@
 
+import DefinedClass.Transaction;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +39,7 @@ public class SQL {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager
                     .getConnection("jdbc:postgresql://159.203.41.250/bank",
-                            "postgres", "3782893");
+                            "admin", "admin");
             System.out.println("Opened database successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,6 +135,8 @@ public class SQL {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
     }
+        
+    
     
     public static void addIP(String email, String IP) {
         Connection conn = database();
@@ -228,6 +232,30 @@ public class SQL {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
         return false;
+    }
+    
+    public static ArrayList transactionHistory(String email) {
+        ArrayList<Transaction> list = new ArrayList<>();
+        Connection conn = database();
+        try {
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "select * from transactions where email = '" + email + "';";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String account = rs.getString("account").trim();
+                float amount = rs.getFloat("amount");
+                String source = rs.getString("source").trim();
+                Date date = rs.getDate("time");
+                Transaction t = new Transaction(email, account, source, amount, date);
+                list.add(t);
+            } 
+            System.out.println("size of returned array list: "+list.size());
+        }catch(Exception e) {
+            System.out.println("i am facing a seriously stupid error!");
+            System.out.println(e);
+        }
+        return list;
     }
         
             /**

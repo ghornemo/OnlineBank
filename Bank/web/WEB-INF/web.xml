@@ -56,6 +56,10 @@
         <servlet-name>transferServlet</servlet-name>
         <servlet-class>transferServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TransacServlet</servlet-name>
+        <servlet-class>TransacServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>transferServlet</servlet-name>
         <url-pattern>/swap</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TransacServlet</servlet-name>
+        <url-pattern>/transactions</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
