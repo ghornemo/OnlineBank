@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/account.css" />
-         <script src="js/account.js"></script>
+        <script src="js/account.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/myAccount.js"></script>
@@ -43,9 +43,6 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <!--<li><a href="#">About</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="\Bank\logout"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
@@ -57,17 +54,11 @@
         <div class="container-fluid text-center">    
 
             <div class="row content">
-                <div class="col-sm-2 sidenav options">
-                    <div><a data-toggle="modal" data-target="#myModal">Change Password</a></div>
-                    <div><a href="#">Loan application & rates</a></div>
-                    <div><a href="#">Transaction History</a></div>
-                    <div><a href="#">Support</a></div>
-                </div>
-                
+
                 <div class="col-sm-2 sidenav">
                     <h3>Make Changes</h3>
                     <div class="vertical-menu">
-                        <a href="#">Change Password</a>
+                        <a data-toggle="modal" data-target="#myModal">Change Password</a>
                         <a href="#">Loan application & rates</a>
                         <a href="#">Transaction History</a>
                         <a href="#">Support</a>
@@ -97,12 +88,12 @@
                             <p>Total: </p>
                         </div>
                         <div class="col-sm-6">
-                            <p><%=700%></p>
-                            <p><%=80%></p>
-                            <p><%=620%></p>
+                            <p><%=client.getCheckingsBalance()+client.getSavingsBalance()%></p>
+                            <p><%=0%></p>
+                            <p><%=client.getCheckingsBalance()+client.getSavingsBalance()%></p>
                         </div>
                     </div>
-                        
+
                     <h3>Banking</h3>
                     <div class="row">
                         <div class="col-sm-12">
@@ -113,50 +104,32 @@
                                 </tr>
                                 <tr>
                                     <td><p>Checking Account</p></td>
-                                    <td><p><%=500%><p></td>
+                                    <td><p><%=client.getCheckingsBalance()%><p></td>
                                 </tr>
                                 <tr>
                                     <td><p>Savings Account</p></td>
-                                    <td><p><%=200%><p></td>
+                                    <td><p><%=client.getSavingsBalance()%><p></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <hr>
-                    
-                    <h3>Credit Cards, Loans & Mortgages</h3>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-hover">
-                                <tr>
-                                    <th><p>Account</p></th>
-                                    <th class="balance"><p>Balance</p></th>
-                                </tr>
-                                <tr>
-                                    <td><p>Credit Account</p></td>
-                                    <td><p><%=80%><p></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+
                 </div>
 
-                                
                 <div class="col-sm-2 sidenav">
                     <h3>Transfers</h3>
                     <div class="vertical-menu">
-                        <a href="#">Transfer Fund</a>
-                        <a href="#">Send Inter E-Transfer</a>
+                        <a data-toggle="modal" data-target="#swapModal">Transfer Fund</a>
+                        <a data-toggle="modal" data-target="#transferModal">Send Inter E-Transfer</a>
                     </div>
-                    <button type="button" data-toggle="modal" data-target="#swapModal">Transfer Funds</button>
-                    <button type="button" data-toggle="modal" data-target="#transferModal">Send Inter E-Transfer</button> 
                 </div>
-                                
+
             </div>
-                                
+
         </div>
-                    
-                    <!-- Model for transferring funds between account -->
+
+        <!-- Model for transferring funds between account -->
         <div id="swapModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -170,17 +143,17 @@
                         <form  name="swap" action="swap" method="post">
                             <div class="form-group">
                                 <label for="oldpwd">From:</label>
-                                   <select class="form-control" id="from" name="from">
+                                <select class="form-control" id="from" name="from">
                                     <option>chequing</option>
                                     <option>savings</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="account">To:</label>
-                                   <select class="form-control" id="to" name="to">
+                                <select class="form-control" id="to" name="to">
                                     <option>chequing</option>
                                     <option>savings</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="amount">Select amount:</label>
@@ -197,8 +170,8 @@
 
             </div>
         </div>                      
-                    
-                    <!-- Model for sending e-transfer -->
+
+        <!-- Model for sending e-transfer -->
         <div id="transferModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -216,10 +189,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="account">Select account:</label>
-                                   <select class="form-control" id="account" name="account">
+                                <select class="form-control" id="account" name="account">
                                     <option>Chequing</option>
                                     <option>Savings</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="amount">Select amount:</label>
@@ -236,7 +209,8 @@
 
             </div>
         </div>  
-                    <!-- Model for changing password -->
+        
+        <!-- Model for changing password -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
