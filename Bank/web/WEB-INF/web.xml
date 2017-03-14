@@ -70,18 +70,6 @@
         <servlet-name>QuestionServlet</servlet-name>
         <url-pattern>/Questions</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>passwordServlet</servlet-name>
-        <url-pattern>/changePass</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>etransferServlet</servlet-name>
-        <url-pattern>/etransfer</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>transferServlet</servlet-name>
-        <url-pattern>/swap</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
