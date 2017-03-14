@@ -70,6 +70,10 @@
         <servlet-name>QuestionServlet</servlet-name>
         <url-pattern>/Questions</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
