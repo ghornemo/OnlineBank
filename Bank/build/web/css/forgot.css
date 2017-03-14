@@ -1,0 +1,31 @@
+ody {
+    font-family: "Verdana", sans-serif;
+}
+
+#top {
+    margin: 0;
+    background-color: #DCDCDC;
+}
+
+.header {
+    text-align: center;
+    margin-top: 3px;
+    padding: 10px;
+}
+
+#logo {
+  width: 300px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 50px;
+  margin-top: 20px;
+}
+
+#logIn {
+    font-size: 16px;
+    padding: 12px 24px;
+    font-weight: bold;
+    float: right;
+    margin-top: 20px;
+}
+
