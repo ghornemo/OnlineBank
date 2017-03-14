@@ -12,9 +12,11 @@ import java.sql.Date;
  * @author gemal
  */
 public class Transaction {
+    
     private String email, account, source;
     private float amount;
     private Date date;
+    
     public Transaction(String email, String account, String source, float amount, Date date) {
         this.email = email;
         this.account = account;

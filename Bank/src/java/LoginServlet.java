@@ -80,8 +80,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("email", email);
             session.setAttribute("client", new Client(email));
 
-            //set session to expire in 1 min
-            session.setMaxInactiveInterval(1000);
+            //set session to expire in 15 mins
+            session.setMaxInactiveInterval(15000);
             Cookie emailCookie = new Cookie("email", email);
             response.addCookie(emailCookie);
 

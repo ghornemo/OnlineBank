@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -20,6 +21,7 @@ and open the template in the editor.
     <body>
         <table class="table table-bordered">
             <tr><td>Account</td><td>Amount</td><td>Source</td><td>Time</td></tr>
+
 <c:forEach items="${transactions}" var="Transaction">
     <tr>
         <td>${Transaction.account}    </td>    

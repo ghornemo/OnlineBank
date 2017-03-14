@@ -45,7 +45,7 @@
                         <li class="active"><a href="#">Home</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="\Bank\logout"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
+                        <li><a href="\logout"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     <div class="vertical-menu">
                         <a data-toggle="modal" data-target="#myModal">Change Password</a>
                         <a href="#">Loan application & rates</a>
-                        <a href="#">Transaction History</a>
+                        <a href="/Bank/transactions">Transaction History</a>
                         <a href="#">Support</a>
                     </div>
                 </div>
