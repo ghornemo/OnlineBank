@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>OnlineBank - Login to our secure financial services site</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width,=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/index.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+<div class="container">
+  
+  <div class="row" id="header"><!--Row1-->
+    <div class="col-md-6" id="logo-col">
+      <h1 id="logo">OnlineBank</h1>
+      <h3 class="text-muted">Login to our secure financial services site</h3>
+    </div>
+    <div class="col-md-6 contact-us">
+      <ul>
+          <li><a href="contact.html" target="_blank">Contact Us</a></li>
+      </ul>
+    </div>
+  </div><!--End Row1-->
+
+  <div class="row"><!--Row2-->
+    <div class="col-md-3" id="secure">
+      <img src="images/secure.png" alt="secured site" />
+    </div>
+    <div class="col-md-6" id="loginForm">
+      <form  name="login" action="login" onsubmit="return validateForm()" method="post">
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" name="password">
+        </div>
+        <button type="submit" class="btn btn-default" value="login">Login</button>
+        <p><a href="forgot.html" target="_blank">Forgot your Username or Password?</a></p>
+      </form>
+    </div>
+    <div class="col-md-3">
+        <button type="button" class="btn btn-default sideButton" onclick="window.location.href='register.html'">New User? <br/>Register</button>
+        <button id="guest" type="button" class="btn btn-default sideButton" onclick="">Log In <br/> As Guest</button>
+    </div>
+  </div><!--End Row2-->
+
+  <div class="row"><!--Row3-->
+    <div class="col-md-12" id="description">
+      <p>OnlineBank provides you banking services at the comfort of your home. OnlineBank is offered by Software Engineers, Kene and Gemal and it affiliates, you agree to the terms and conditions of the Financial Services Terms, Cardholder and Electronic Financial Services Terms and Conditions and/or; the Business Access Services Schedule, and/or; the Terms and Agreement and Disclosure for mutual fund accounts held with us.</p>
+    </div>
+  </div><!--End Row3-->
+  
+  <footer class="footer"><!--footer-->
+      <div class="container">
+        <p class="text-muted">&copy 2017</p>
+      </div>
+    </footer><!--footer-->
+
+</div>
+</body>
+</html>
