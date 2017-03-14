@@ -36,6 +36,8 @@ public class Client {
     private String answer1;
     private String question2;
     private String answer2;
+    private double checkingsBalance;
+    private double savingsBalance;
     
     public void email(String topic, String body) {
         //Cannot find class: mailer?
@@ -74,6 +76,21 @@ public class Client {
               this.question2 = rs.getString(16);
               this.answer2 = rs.getString(17);
             }
+            
+            System.out.println("Creating statement...");
+            sql = "select * from balances where email=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                this.checkingsBalance = Double.parseDouble(rs.getString(2));
+                this.savingsBalance = Double.parseDouble(rs.getString(3));
+                
+            }
+            
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -216,7 +233,21 @@ public class Client {
         this.answer2 = answer2;
     }
     
- 
+     public double getCheckingsBalance() {
+        return checkingsBalance;
+    }
+
+    public void setCheckingsBalance(double checkingsBalance) {
+        this.checkingsBalance = checkingsBalance;
+    }
+
+    public double getSavingsBalance() {
+        return savingsBalance;
+    }
+
+    public void setSavingsBalance(double savingsBalance) {
+        this.savingsBalance = savingsBalance;
+    }
     
     public static Connection database() {
         Connection conn = null;

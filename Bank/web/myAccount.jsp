@@ -88,9 +88,9 @@
                             <p>Total: </p>
                         </div>
                         <div class="col-sm-6">
-                            <p><%=700%></p>
-                            <p><%=80%></p>
-                            <p><%=620%></p>
+                            <p><%=client.getCheckingsBalance()+client.getSavingsBalance()%></p>
+                            <p><%=0%></p>
+                            <p><%=client.getCheckingsBalance()+client.getSavingsBalance()%></p>
                         </div>
                     </div>
 
@@ -104,34 +104,18 @@
                                 </tr>
                                 <tr>
                                     <td><p>Checking Account</p></td>
-                                    <td><p><%=500%><p></td>
+                                    <td><p><%=client.getCheckingsBalance()%><p></td>
                                 </tr>
                                 <tr>
                                     <td><p>Savings Account</p></td>
-                                    <td><p><%=200%><p></td>
+                                    <td><p><%=client.getSavingsBalance()%><p></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <hr>
 
-                    <h3>Credit Cards, Loans & Mortgages</h3>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-hover">
-                                <tr>
-                                    <th><p>Account</p></th>
-                                    <th class="balance"><p>Balance</p></th>
-                                </tr>
-                                <tr>
-                                    <td><p>Credit Account</p></td>
-                                    <td><p><%=80%><p></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
                 </div>
-
 
                 <div class="col-sm-2 sidenav">
                     <h3>Transfers</h3>
