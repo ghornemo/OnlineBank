@@ -20,6 +20,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -84,17 +85,22 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(emailCookie);
 
                 //Get endCoded URL string
-                String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
+                       RequestDispatcher view = request.getRequestDispatcher("myAccount.jsp");
+        view.forward(request, response);
+                
+                //String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
 
-                response.sendRedirect(encodedURL);
+                //response.sendRedirect(encodedURL);
             }else{//New IP
                 String[] questions = SQL.questions(email);
                 Cookie cookie1 = new Cookie("question1", questions[0]);
                 response.addCookie(cookie1);
                 Cookie cookie2 = new Cookie("question2", questions[1]);
                 response.addCookie(cookie2);
-                String encodedURL = response.encodeRedirectURL("/Bank/questions.jsp");
-                response.sendRedirect(encodedURL);
+                        RequestDispatcher view = request.getRequestDispatcher("questions.jsp");
+        view.forward(request, response);
+                //String encodedURL = response.encodeRedirectURL("/Bank/questions.jsp");
+                //response.sendRedirect(encodedURL);
             }
         }
     }
