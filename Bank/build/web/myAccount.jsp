@@ -60,7 +60,7 @@
                     <div class="vertical-menu">
                         <a data-toggle="modal" data-target="#myModal">Change Password</a>
                         <a href="#">Loan application & rates</a>
-                        <a href="transactions?email=<%= session.getAttribute("email") %>">Transaction History</a>
+                        <a href="transactions">Transaction History</a>
                         <a href="#">Support</a>
                     </div>
                 </div>
@@ -159,8 +159,6 @@
                                 <label for="amount">Select amount:</label>
                                 <input type="number" min="0" step=".01" class="form-control" id="amount" name="amount">
                             </div>
-                            <% Client e = (Client)session.getAttribute("client"); System.out.println(e);%>
-                            <input type="hidden" name="email" id="test" value=<%=e.getEmail() %>/>
                             <button type="submit" class="btn btn-default" value="Submit">Submit</button>
 
                         </form>

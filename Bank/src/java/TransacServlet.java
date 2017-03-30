@@ -32,17 +32,15 @@ public class TransacServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-         String email = request.getParameter("email");
-         //(String)request.getSession().getAttribute("email");
+        
+         String email = (String)request.getSession().getAttribute("email");
         //HttpSession session = request.getSession();
 
         ArrayList list = SQL.transactionHistory(email);
         
-        //HttpSession session = request.getSession();
-        //session.setAttribute("transactions", list);
-        //request.getSession().setAttribute("transactions", list);
-        request.setAttribute("transactions", list);
+        HttpSession session = request.getSession();
+        session.setAttribute("transactions", list);
+        request.getSession().setAttribute("transactions", list);
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher view = request.getRequestDispatcher("history.jsp");
         view.forward(request, response);

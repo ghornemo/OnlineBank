@@ -69,7 +69,7 @@ public class transferServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         float amount = Float.parseFloat(request.getParameter("amount"));
-        String email = request.getParameter("email");//(String)request.getSession().getAttribute("email");
+        String email = (String)request.getSession().getAttribute("email");
         String source = request.getParameter("from");
         String destination = request.getParameter("to");
         boolean success = SQL.transfer(email, amount, source, destination);
