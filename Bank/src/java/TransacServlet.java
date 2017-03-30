@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import DefinedClass.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,9 +32,16 @@ public class TransacServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = (String)request.getSession().getAttribute("email");
+
+         String email = request.getParameter("email");
+         //(String)request.getSession().getAttribute("email");
+        //HttpSession session = request.getSession();
+
         ArrayList list = SQL.transactionHistory(email);
-        request.getSession().setAttribute("transactions", list);
+        
+        //HttpSession session = request.getSession();
+        //session.setAttribute("transactions", list);
+        //request.getSession().setAttribute("transactions", list);
         request.setAttribute("transactions", list);
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher view = request.getRequestDispatcher("history.jsp");

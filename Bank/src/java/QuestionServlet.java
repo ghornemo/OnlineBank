@@ -98,7 +98,7 @@ public class QuestionServlet extends HttpServlet {
             String[] realAnswer = SQL.answers(email);
             if(submitted1.equalsIgnoreCase(realAnswer[0]) && submitted2.equalsIgnoreCase(realAnswer[1])) {
                 //Successfully answered security questions
-                SQL.addIP(email, IP);
+                //SQL.addIP(email, IP);
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
                 session.setAttribute("client", new Client(email));

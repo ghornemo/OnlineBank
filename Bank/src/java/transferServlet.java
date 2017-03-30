@@ -26,7 +26,7 @@ public class transferServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response, boolean success)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response, boolean success, String msg)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -69,11 +69,13 @@ public class transferServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         float amount = Float.parseFloat(request.getParameter("amount"));
-        String email = (String)request.getSession().getAttribute("email");
+        String email = request.getParameter("email");//(String)request.getSession().getAttribute("email");
         String source = request.getParameter("from");
         String destination = request.getParameter("to");
         boolean success = SQL.transfer(email, amount, source, destination);
-        processRequest(request, response, success);
+        
+        String msg = email + " " + amount + " " + source + " " + destination;
+        processRequest(request, response, success, msg);
     }
 
     /**
