@@ -10,7 +10,7 @@ and open the template in the editor.
 
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Transaction History</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,17 +19,28 @@ and open the template in the editor.
         <script src="js/history.js"></script>
     </head>
     <body>
-        <table class="table table-bordered">
-            <tr><td>Account</td><td>Amount</td><td>Source</td><td>Time</td></tr>
-
-<c:forEach items="${transactions}" var="Transaction">
-    <tr>
-        <td>${Transaction.account}    </td>    
-        <td>${Transaction.amount}    </td>    
-        <td>${Transaction.source}    </td>   
-        <td>${Transaction.date}</td>
-    </tr>
-</c:forEach>
-</table>
+        <h1> Transaction History </h1>
+<select id="options" onchange="myFunction()">
+  <option value="chequing">Chequing</option>
+  <option value="savings">Savings</option>
+</select>
+        <div class="container-fluid" style="height: 500px">
+            <table id="theTable" class="table table-bordered">
+                <thead>
+                    <tr><td>Account</td><td>Amount</td><td>Source</td><td>Time</td></tr>
+                </thead>
+                    <tbody style="overflow: auto; height: 400px; position: absolute">
+                    
+                        <c:forEach items="${transactions}" var="Transaction">
+                            <tr style="width:100%">
+                                <td>${Transaction.account}    </td>    
+                                <td>${Transaction.amount}    </td>    
+                                <td>${Transaction.source}    </td>   
+                                <td>${Transaction.date}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+            </table>
+        </div>
     </body>
 </html>

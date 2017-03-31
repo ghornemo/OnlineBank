@@ -29,22 +29,13 @@ public class passwordServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, boolean success)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
-        String link = "<a href='url'>link text</a>";
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Attempting to change password</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            if(success)
-            out.println("<h1>Password successfully changed. Click here to be redirect to main page</h1>");
-            else
-            out.println("<h1>Failed to change password; incorrect password supplied.</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            out.print(success);
+            
         }
     }
 

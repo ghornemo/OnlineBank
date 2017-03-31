@@ -88,9 +88,9 @@
                             <p>Total: </p>
                         </div>
                         <div class="col-sm-6">
-                            <p><%=client.getCheckingsBalance()+client.getSavingsBalance()%></p>
+                            <p id="total"><%=client.getCheckingsBalance() + client.getSavingsBalance()%></p>
                             <p><%=0%></p>
-                            <p><%=client.getCheckingsBalance()+client.getSavingsBalance()%></p>
+                            <p id="total"><%=client.getCheckingsBalance() + client.getSavingsBalance()%></p>
                         </div>
                     </div>
 
@@ -104,11 +104,11 @@
                                 </tr>
                                 <tr>
                                     <td><p>Checking Account</p></td>
-                                    <td><p><%=client.getCheckingsBalance()%><p></td>
+                                    <td><p id="checkings"><%=client.getCheckingsBalance()%><p></td>
                                 </tr>
                                 <tr>
                                     <td><p>Savings Account</p></td>
-                                    <td><p><%=client.getSavingsBalance()%><p></td>
+                                    <td><p id="savings"><%=client.getSavingsBalance()%><p></td>
                                 </tr>
                             </table>
                         </div>
@@ -136,11 +136,12 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
                         <h4 class="modal-title">Transfer Funds</h4>
                     </div>
                     <div class="modal-body">
-                        <form  name="swap" action="swap" method="post">
+                        <form  name="swap" action="swap" method ="post" id = "myForm">
+                            <div id="transfer-msg"></div>
                             <div class="form-group">
                                 <label for="oldpwd">From:</label>
                                 <select class="form-control" id="from" name="from">
@@ -159,12 +160,12 @@
                                 <label for="amount">Select amount:</label>
                                 <input type="number" min="0" step=".01" class="form-control" id="amount" name="amount">
                             </div>
-                            <button type="submit" class="btn btn-default" value="Submit">Submit</button>
 
                         </form>
+                        <button  class="btn btn-default" type="submit" id="transfer-button">Submit</button> <!--type="submit"-->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="close-transfer" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
 
@@ -178,38 +179,39 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
                         <h4 class="modal-title">Configure E-Transfer</h4>
                     </div>
                     <div class="modal-body">
                         <form  name="etransfer" action="etransfer" method="post">
+                            <div id="etransfer-msg"></div>
                             <div class="form-group">
                                 <label for="receiver">Recipient email:</label>
-                                <input type="email" class="form-control" id="receiver" name="receiver">
+                                <input type="email" class="form-control" id="e-receiver" name="receiver">
                             </div>
                             <div class="form-group">
                                 <label for="account">Select account:</label>
                                 <select class="form-control" id="account" name="account">
-                                    <option>Chequing</option>
-                                    <option>Savings</option>
+                                    <option>chequing</option>
+                                    <option>savings</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="amount">Select amount:</label>
-                                <input type="number" min="0" step=".01" class="form-control" id="amount" name="amount">
+                                <input type="number" min="0" step=".01" class="form-control" id="e-amount" name="amount">
                             </div>
-                            <button type="submit" class="btn btn-default" value="Submit">Submit</button>
 
                         </form>
+                        <button id="etransfer-button" type="submit" class="btn btn-default" value="Submit">Submit</button>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="close-etransfer" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
 
             </div>
         </div>  
-        
+
         <!-- Model for changing password -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -217,11 +219,12 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
                         <h4 class="modal-title">Change Password</h4>
                     </div>
                     <div class="modal-body">
-                        <form  name="newpass" action="changePass" onsubmit="return validateForm()" method="post">
+                        <form  name="newpass" action="changePass" method="post">
+                            <div id="change-pass-msg"></div>
                             <div class="form-group">
                                 <label for="oldpwd">Current Password:</label>
                                 <input type="password" class="form-control" id="oldpwd" name="oldPassword">
@@ -234,12 +237,13 @@
                                 <label for="newpwd2">Confirm Password:</label>
                                 <input type="password" class="form-control" id="newpwd2" name="newPassword2">
                             </div>
-                            <button type="submit" class="btn btn-default" value="Submit">Submit</button>
-
+                            
                         </form>
+                        
+                        <button id = "change-pass-button" type="submit" class="btn btn-default" value="Submit">Submit</button>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="close-change-pass" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
 

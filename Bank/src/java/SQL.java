@@ -225,6 +225,7 @@ public class SQL {
             stmt.executeUpdate(sql);
             sql = "INSERT INTO transactions (email, amount, source, account) values ('" + to + "', "+amount+" ,'"+from+"', 'chequing');";
             stmt.executeUpdate(sql);
+            System.out.println("Done Transferring!!!");
             conn.close();
             return true;
         } catch (Exception e) {

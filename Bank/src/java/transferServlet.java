@@ -28,18 +28,15 @@ public class transferServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, boolean success, String msg)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet transferServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Status of money transfer: "+success+"</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            out.print(success);
+            //out.println("** Transaction Successful **</br>" + msg);
+            //out.println("!! Transaction Failed !!</br>Please check your selections and try again");
+
         }
     }
 
@@ -55,6 +52,7 @@ public class transferServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response, boolean success)
             throws ServletException, IOException {
         //processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -69,12 +67,12 @@ public class transferServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         float amount = Float.parseFloat(request.getParameter("amount"));
-        String email = (String)request.getSession().getAttribute("email");
+        String email = (String) request.getSession().getAttribute("email");
         String source = request.getParameter("from");
         String destination = request.getParameter("to");
         boolean success = SQL.transfer(email, amount, source, destination);
-        
-        String msg = email + " " + amount + " " + source + " " + destination;
+
+        String msg = "Transferred " + amount + " From " + source + " To " + destination + ".";
         processRequest(request, response, success, msg);
     }
 
