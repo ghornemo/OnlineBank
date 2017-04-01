@@ -95,3 +95,7 @@ th {
     margin-top: 30px;
     margin-bottom: 15px;
 }
+
+.red-border {
+    border: 1px solid red;
+}

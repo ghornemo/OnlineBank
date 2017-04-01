@@ -59,17 +59,9 @@ public class LoginServlet extends HttpServlet {
         //Unsuccessful Login
         if (!success) {
             try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet LoginServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Login response: " + status + "</h1>");
-                out.println("<h1>for email: " + email + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
+               
+                out.print(success);
+                System.out.println(success);
 
             }
             //Successful login
@@ -86,7 +78,6 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(emailCookie);
 
             if (SQL.existingIP(email, IP)) {//existing IP
-
                 //Get endCoded URL string
                 String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
                 response.sendRedirect(encodedURL);

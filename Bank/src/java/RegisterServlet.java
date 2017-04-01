@@ -40,11 +40,11 @@ public class RegisterServlet extends HttpServlet {
         infoList.add(request.getParameter("password"));
         infoList.add(request.getParameter("dob"));
         infoList.add(request.getParameter("phone"));
-        infoList.add(request.getParameter("address-line1"));
-        infoList.add(request.getParameter("address-line2"));
+        infoList.add(request.getParameter("addressLine1"));
+        infoList.add(request.getParameter("addressLine2"));
         infoList.add(request.getParameter("city"));
         infoList.add(request.getParameter("region"));
-        infoList.add(request.getParameter("postal-code"));
+        infoList.add(request.getParameter("postalCode"));
         infoList.add(request.getParameter("country"));
         infoList.add(request.getParameter("question1"));
         infoList.add(request.getParameter("answer1"));
@@ -53,55 +53,13 @@ public class RegisterServlet extends HttpServlet {
         
         
         boolean userCreated = SQL.registrationRequest(infoList);   //send to add info to database.
-
-        /////////////////////////////////////////////////////////////
-        //TODO
-        //*done*Connect to database
-        //*done*using SQL.registrationRequest() in SQL.java
-        //*done*In there check if email address already exists in database
-        //*done*If not Insert registration data into database
-        //if insertion is successful prompt user email will be sent
-        //use send mailer.java to send email as done below.
-        //if email sends successfully prompt user to checkemail for verification.
-        /////////////////////////////////////////////////////////////
-        if (userCreated) {
-            try (PrintWriter out = response.getWriter()) {
-                
-                //send verification email.
-                new mailer().sendMail(infoList.get(2), "Success login", "Congratulations for registering for our online services at Online Bank!");
-
-                
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet RegisterServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-                out.println("<p>" + infoList.get(0) + "</br>" + infoList.get(1) + "</br>" + infoList.get(2) + "</br>"
-                        + infoList.get(3) + "</br>" + infoList.get(4) + "</br>" + infoList.get(5) + "</br>" + infoList.get(6) + "</br>"
-                        + infoList.get(7) + "</br>" + infoList.get(8) + "</br>" + infoList.get(9) + "</br>" + infoList.get(10) + "</br>"
-                        + infoList.get(11) + "</br>" + infoList.get(12) + "</br>" + infoList.get(13) + "</br>" + infoList.get(14) + "</br>"
-                        + infoList.get(15) + "</p>");
-                out.println("<p>"+"You Have been registered!!!"+"</b>"+"A verification email has been sent."+"</p>");
-                out.println("</body>");
-                out.println("</html>");
-            }
-        }else{
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet RegisterServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-                out.println("<p>"+"User Already exists"+"</p>");
-                out.println("</body>");
-                out.println("</html>");
-            }
+        
+        try (PrintWriter out = response.getWriter()) {
+            
+            out.print(userCreated);
+            
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

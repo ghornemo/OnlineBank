@@ -2,6 +2,14 @@ body {
     font-family: "Verdana", sans-serif;
 }
 
+.glyphicon glyphicon-log-in {
+    margin-right: 40px;
+}
+
+.red-border {
+    border: 1px solid red;
+}
+
 #top {
     margin: 0;
     background-color: #DCDCDC;
