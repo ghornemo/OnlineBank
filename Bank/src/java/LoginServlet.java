@@ -79,8 +79,13 @@ public class LoginServlet extends HttpServlet {
 
             if (SQL.existingIP(email, IP)) {//existing IP
                 //Get endCoded URL string
-                String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
-                response.sendRedirect(encodedURL);
+                /*String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
+                response.sendRedirect(encodedURL);*/
+                try (PrintWriter out = response.getWriter()) {
+               
+                    out.print("myAccount.jsp");
+
+                }
 
             } else {//New IP
                 String[] questions = SQL.questions(email);
@@ -88,8 +93,13 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(cookie1);
                 Cookie cookie2 = new Cookie("question2", questions[1]);
                 response.addCookie(cookie2);
-                String encodedURL = response.encodeRedirectURL("/Bank/questions.jsp");
-                response.sendRedirect(encodedURL);
+                /*String encodedURL = response.encodeRedirectURL("/Bank/questions.jsp");
+                response.sendRedirect(encodedURL);*/
+                try (PrintWriter out = response.getWriter()) {
+               
+                    out.print("questions.jsp");
+
+                }
             }
         }
     }

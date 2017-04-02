@@ -1,16 +1,72 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$(document).ready(function () {
+   // loadQuestions();
 
-function loadQuestions() {
-    var q1 = getCookie("question1");
-    var q2 = getCookie("question2");
-    var $question1 = document.querySelector('.question1');
-    var $question2 = document.querySelector('.question2');
+    $("#sq-button").click(function () {
+        
+        if (validateSecurityForm()) {
 
-$question1.innerHTML = q1;
-$question2.innerHTML = q2;
+            var ans1 = $("#answer1").val();
+            var ans2 = $("#answer2").val();
+
+            $.ajax({
+                url: 'Questions',
+                data: {answer1: ans1, answer2: ans2},
+                type: 'POST',
+                cache: false,
+
+                success: function (data) {
+                    console.log(data);
+
+                    if (data.toString() === "false") {
+                        $("#msg").prepend("<div id='status'><strong>!! Incorrect Answer To Security Question !!" +
+                                "<br/>Please, Try Again.</strong></div>")
+                                .addClass("alert alert-danger text-center");
+                    }
+
+                    if (data.toString() === "myAccount.jsp") {
+                        window.location.replace(data);
+                    }
+                },
+
+                error: function (error) {
+                    alert(error);
+                }
+
+            });
+
+        }
+    });
+
+
+
+});
+
+
+function validateSecurityForm() {
+    
+    var ans1 = $('#answer1');
+    var ans2 = $('#answer2');
+    
+    ans1.removeClass("red-border");
+    ans2.removeClass("red-border");
+    
+    $("#msg").removeClass("alert alert-danger text-center");
+    $("#status").removeClass("alert alert-danger text-center");
+    $("#status").remove();
+    
+    if(ans1.val() === ""){
+        ans1.addClass("red-border");
+        $("#msg").prepend("<div id='status'><strong>Please Enter An Answer For First Security Question.</strong></div>")
+                .addClass("alert alert-danger text-center");
+        return false;
+    }
+    
+    if(ans2.val() === ""){
+        ans2.addClass("red-border");
+        $("#msg").prepend("<div id='status'><strong>Please Enter An Answer For Second Security Question.</strong></div>")
+                .addClass("alert alert-danger text-center");
+        return false;
+    }
+
+    return true;
 }
-loadQuestions();

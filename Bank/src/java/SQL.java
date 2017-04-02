@@ -308,6 +308,7 @@ public class SQL {
                 System.out.println("Password received from post: " + pass);
             }
             if (authentication.equals(pass)) {
+                System.out.println("Returned True");
                 return true;
             }
             conn.close();

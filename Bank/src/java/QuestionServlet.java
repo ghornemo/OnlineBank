@@ -33,22 +33,16 @@ public class QuestionServlet extends HttpServlet {
             throws ServletException, IOException {
         //Handling the GET Request! Basically the same in all circumstances.
         response.setContentType("text/html;charset=UTF-8");
-        
+
         HttpSession session = request.getSession();
-        if(session != null)
+        if (session != null) {
             session.invalidate();
-        
+        }
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet QuestionServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet QuestionServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            out.print("false");
+
         }
     }
 
@@ -66,13 +60,15 @@ public class QuestionServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     public String cookie(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
-        if(cookies != null) {
-            for(Cookie cookie : cookies)
-                if(cookie.getName().equals(name))
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(name)) {
                     return cookie.getValue();
+                }
+            }
         }
         return null;
     }
@@ -88,34 +84,44 @@ public class QuestionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        
         //Method do handle the security question verification
-            HttpServletRequest req = (HttpServletRequest) request;
-            HttpServletResponse res = (HttpServletResponse) response;
-            String email = cookie(request, "email");
-            String IP = request.getRemoteAddr();
-            String submitted1 = req.getParameter("answer1");
-            String submitted2 = req.getParameter("answer2");
-            String[] realAnswer = SQL.answers(email);
-            if(submitted1.equalsIgnoreCase(realAnswer[0]) && submitted2.equalsIgnoreCase(realAnswer[1])) {
-                //Successfully answered security questions
-                //SQL.addIP(email, IP);
-                HttpSession session = request.getSession();
-                session.setAttribute("email", email);
-                session.setAttribute("client", new Client(email));
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        String email = cookie(request, "email");
+        
+        String IP = request.getRemoteAddr();
+        
+        String submitted1 = req.getParameter("answer1");
+        String submitted2 = req.getParameter("answer2");
+        String[] realAnswer = SQL.answers(email);
+        
+        if (submitted1.equalsIgnoreCase(realAnswer[0]) && submitted2.equalsIgnoreCase(realAnswer[1])) {
+            //Successfully answered security questions
+            SQL.addIP(email, IP);
+            HttpSession session = request.getSession();
+            session.setAttribute("email", email);
+            session.setAttribute("client", new Client(email));
 
-                //set session to expire in 1 min
-                session.setMaxInactiveInterval(1000);
-                Cookie emailCookie = new Cookie("email", email);
-                response.addCookie(emailCookie);
+            //set session to expire in 15 mins
+            session.setMaxInactiveInterval(15000);
+            Cookie emailCookie = new Cookie("email", email);
+            response.addCookie(emailCookie);
 
-                //Get endCoded URL string
-                String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
+            //Get endCoded URL string
+            /*String encodedURL = response.encodeRedirectURL("/Bank/myAccount.jsp");
+                response.sendRedirect(encodedURL);*/
+            try (PrintWriter out = response.getWriter()) {
 
-                response.sendRedirect(encodedURL);
-            }else {
-                //Unsuccessfully answered security questions
-                processRequest(request, response);
+                out.print("myAccount.jsp");
+
             }
+            
+        } else {
+            //Unsuccessfully answered security questions
+            processRequest(request, response);
+        }
     }
 
     /**
