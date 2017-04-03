@@ -44,11 +44,11 @@ and open the template in the editor.
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="myAccount.jsp">OnlineBank</a>
+                    <a class="navbar-brand" href="index.html">OnlineBank</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="myAccount.jsp">Home</a></li>
+                        <li class="active"><a href="index.html">Home</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.html"><span class="glyphicon glyphicon-log-in"></span>Log In</a></li>

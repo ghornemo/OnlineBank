@@ -143,11 +143,13 @@ function validateRegisterForm() {
         return false;
     }
     
-    var dateRegex = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-    if(!dateRegex.test(dob.val())){
+    var dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    console.log(dob.val());
+    //if(!dateRegex.test(dob.val()) || !dateRegex2.match(dob.val())){
+    if(dob.val() === ""){
         dob.addClass("red-border");
         $("#msg").prepend("<div id='status'><strong>Not a valid Date<br />"+
-                "Enter Date in one of the following formats: dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy</strong></div>")
+                "Enter Date in the format: mm/dd/yyyy</strong></div>")
                 .addClass("alert alert-danger text-center");
         return false;
     }
