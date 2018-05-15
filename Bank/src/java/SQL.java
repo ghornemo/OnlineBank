@@ -38,7 +38,7 @@ public class SQL {
         try {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager
-                    .getConnection("jdbc:postgresql://159.203.41.250/bank",
+                    .getConnection("jdbc:postgresql://127.0.0.1/bank",
                             "admin", "admin");
             System.out.println("Opened database successfully");
         } catch (Exception e) {
